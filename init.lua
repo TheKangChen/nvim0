@@ -10,11 +10,10 @@
 require("config.keymaps")
 require("config.colorscheme")
 require("config.options")
--- require("config.lazy") -- Toggle on if I decide to use some plugins
 require("config.lsp")
 require("config.customcmds")
 require("config.autocmds")
 
 -- TODO: add statusline
 -- TODO: consider adding mini.nvim
--- TODO: Global todo list: TODO | FIX | NOTE | WARNING
+-- TODO: todo list tags: TODO | FIX | NOTE | WARNING
