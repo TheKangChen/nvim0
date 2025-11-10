@@ -103,7 +103,7 @@ map("t", "<Esc>", "<cmd>CloseTermFromTerm<cr>",
     { noremap = true, silent = true, desc = "Close floating terminal from terminal mode" })
 
 -- Preview Markdown with Glow
-vim.keymap.set("n", "<leader>mp", "<cmd>GlowPreviewColored right<cr>", { desc = "Preview Markdown in Split (Glow)" })
+vim.keymap.set("n", "<leader>p", "<cmd>GlowPreviewColored right<cr>", { desc = "Preview Markdown in Split (Glow)" })
 
 -- Diagnostics
 map(
