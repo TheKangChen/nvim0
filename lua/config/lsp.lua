@@ -15,10 +15,11 @@
 vim.lsp.enable({
     "bashls",
     "clangd",
-    "ruff",
+    "gopls",
+    "harper_ls",
+    "lua_ls",
     "pyright",
-    "lua-ls",
-    "harper-ls",
+    "ruff",
 })
 
 -- LSP Related Keymaps
@@ -124,6 +125,7 @@ vim.diagnostic.config({
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(event)
+        -- Completion menu auto popup
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion, event.buf) then
             vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
