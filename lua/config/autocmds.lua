@@ -34,39 +34,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end
     end,
 })
-
--- Completion auto triggers: Very aggressive! Does not go away after insert!
--- local timer = vim.uv.new_timer()
---
--- vim.api.nvim_create_autocmd({ "TextChangedI", "TextChangedP" }, {
---   callback = function()
---     if timer:is_active() then
---       timer:stop()
---     end
---
---     timer:start(200, 0, function()
---       vim.schedule(function()
---         local col = vim.fn.col(".") - 1
---         local current = vim.fn.getline("."):sub(1, col):match("%w+$")
---
---         if current and #current >= 1 then
---           -- trigger completion if not visible
---           if vim.fn.pumvisible() == 0 then
---             vim.fn.feedkeys(
---               vim.api.nvim_replace_termcodes("<C-x><C-o>", true, true, true),
---               "n"
---             )
---           end
---         else
---           -- close the menu if cursor is not on a word
---           if vim.fn.pumvisible() == 1 then
---             vim.fn.feedkeys(
---               vim.api.nvim_replace_termcodes("<C-e>", true, true, true),
---               "n"
---             )
---           end
---         end
---       end)
---     end)
---   end,
--- })
