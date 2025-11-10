@@ -22,7 +22,9 @@ function M.FloatingTerminal()
     if not M.terminal_state.buf or not vim.api.nvim_buf_is_valid(M.terminal_state.buf) then
         M.terminal_state.buf = vim.api.nvim_create_buf(false, true)
         -- Set buffer options for better terminal experience
-        vim.api.nvim_buf_set_option(M.terminal_state.buf, 'bufhidden', 'hide')
+        vim.api.nvim_set_option_value("bufhidden", "hide", {
+            buf = M.terminal_state.buf,
+        })
     end
 
     -- Calculate window dimensions
@@ -43,11 +45,11 @@ function M.FloatingTerminal()
     })
 
     -- Set transparency for the floating window
-    vim.api.nvim_win_set_option(M.terminal_state.win, 'winblend', 0)
+    vim.api.nvim_set_option_value('winblend', 0, { win = M.terminal_state.win })
 
     -- Set transparent background for the window
-    vim.api.nvim_win_set_option(M.terminal_state.win, 'winhighlight',
-        'Normal:FloatingTermNormal,FloatBorder:FloatingTermBorder')
+    vim.api.nvim_set_option_value('winhighlight', 'Normal:FloatingTermNormal,FloatBorder:FloatingTermBorder',
+        { win = M.terminal_state.win })
 
     -- Define highlight groups for transparency
     vim.api.nvim_set_hl(0, "FloatingTermNormal", { bg = "none" })
@@ -98,8 +100,9 @@ function M.CloseTerminalFromTerminal()
     end
 end
 
-vim.api.nvim_create_user_command("OpenFloatTerm", M.FloatingTerminal, {desc = "Open floating terminal"})
-vim.api.nvim_create_user_command("CloseFloatTerm", M.CloseFloatingTerminal, {desc = "Close floating terminal"})
-vim.api.nvim_create_user_command("CloseTermFromTerm", M.CloseTerminalFromTerminal, {desc = "Close floating terminal from terminal"})
+vim.api.nvim_create_user_command("OpenFloatTerm", M.FloatingTerminal, { desc = "Open floating terminal" })
+vim.api.nvim_create_user_command("CloseFloatTerm", M.CloseFloatingTerminal, { desc = "Close floating terminal" })
+vim.api.nvim_create_user_command("CloseTermFromTerm", M.CloseTerminalFromTerminal,
+    { desc = "Close floating terminal from terminal" })
 
 return M
