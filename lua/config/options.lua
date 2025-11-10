@@ -30,7 +30,7 @@ vim.o.autowrite = false -- Don't autosave
 
 -- Behavior Settings
 vim.o.updatetime = 500    -- Faster triggering of things like completions & autocmds
-vim.o.timeoutlen = 500    -- Keymap timeout
+-- vim.o.timeoutlen = 500    -- Keymap timeout
 vim.o.hidden = true       -- Allow hidden buffers
 vim.o.errorbells = false
 vim.o.autochdir = false   -- Don't auto change directory

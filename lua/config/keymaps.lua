@@ -26,13 +26,13 @@ map("n", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Focus window left" })
 map("n", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Focus window right" })
 
 -- Buffer Navigation
-map("n", "<leader>bn", ":bnext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bp", ":bprevious<cr>", { desc = "Previous buffer" })
+map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to alternate file" })
 
 -- File Navigation
 -- TODO: Use plugins for this, this is miserable
-map("n", "<leader>mm", ":Explore<CR>", { desc = "Open file explorer" })
+map("n", "<leader>mm", "<cmd>Explore<cr>", { desc = "Open file explorer" })
 map("n", "<leader>ff", ":find ", { desc = "Find file" })
 
 -- Search
@@ -41,6 +41,7 @@ map("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 
 -- Delete Without Yanking
 map({ "n", "v" }, "<A-d>", '"_d', { desc = "Delete without yanking" })
+map({ "n", "v" }, "<A-c>", '"_c', { desc = "Change without yanking" })
 
 -- Move Lines Up/Down
 map("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
@@ -48,19 +49,49 @@ map("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
--- Better Join Line
-map("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
-
--- Better Indenting In Visual Mode
+-- Indentation
+---- Better Indenting In Visual Mode
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
+
+---- Easier Indenting
+map("n", "<A-l>", function()
+    local col = vim.fn.col(".")
+    vim.cmd("normal! >>")
+    local shift = vim.fn.shiftwidth()
+    vim.fn.cursor(0, col + shift)
+end, { desc = "Indent line" })
+
+map("n", "<A-h>", function()
+    local col = vim.fn.col(".")
+    vim.cmd("normal! <<")
+    local shift = vim.fn.shiftwidth()
+    vim.fn.cursor(0, math.max(1, col - shift))
+end, { desc = "Unindent line" })
+
+map("v", "<A-l>", function()
+    local col = vim.fn.col(".")
+    vim.cmd("normal! >gv")
+    local shift = vim.fn.shiftwidth()
+    vim.fn.cursor(0, col + shift)
+end, { desc = "Indent selection" })
+
+map("v", "<A-h>", function()
+    local col = vim.fn.col(".")
+    vim.cmd("normal! <gv")
+    local shift = vim.fn.shiftwidth()
+    vim.fn.cursor(0, col + shift)
+end, { desc = "Unindent selection" })
+
+-- Better Join Line
+map("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 -- Quick Config Editing
 map("n", "<leader>rc", "<cmd>e $MYVIMRC<CR>", { desc = "Edit config" })
 
 -- Colorscheme
-map("n", "<leader>tr", "<cmd>MyTheme<cr>", { desc = "Switch to Regular Theme" })
-map("n", "<leader>ta", "<cmd>AltTheme<cr>", { desc = "Switch to Alternative Theme" })
+map("n", "<leader>tr", "<cmd>ApplyTheme<cr>", { desc = "Switch to Regular Theme" })
+map("n", "<leader>ta", "<cmd>ApplyTheme alt<cr>", { desc = "Switch to Alternative Theme" })
 
 -- Center Cursor
 map("n", "<leader>z", "<cmd>CenterCursor<cr>", { desc = "Toggle Center Cursor" })
@@ -72,7 +103,7 @@ map("t", "<Esc>", "<cmd>CloseTermFromTerm<cr>",
     { noremap = true, silent = true, desc = "Close floating terminal from terminal mode" })
 
 -- Preview Markdown with Glow
-vim.keymap.set("n", "<leader>mp", "<cmd>GlowPreviewColored right<cr>", { desc = "Preview Markdown in Split (Colored)" })
+vim.keymap.set("n", "<leader>mp", "<cmd>GlowPreviewColored right<cr>", { desc = "Preview Markdown in Split (Glow)" })
 
 -- Diagnostics
 map(
@@ -99,10 +130,6 @@ local local_session = "./session.local.vim"
 local global_session_dir = vim.fn.stdpath('data') .. "/session"
 local global_session = global_session_dir .. "/Session.global.vim"
 
-map("n", "<leader>ss", function()
-    vim.cmd("mksession! " .. local_session)
-    vim.notify("Local session written " .. local_session, vim.log.levels.INFO)
-end, { silent = true, desc = "Save Session (local)" })
 map("n", "<leader>sS", function()
     if vim.fn.isdirectory(global_session_dir) == 0 then
         vim.fn.mkdir(global_session_dir, "p")
@@ -110,6 +137,10 @@ map("n", "<leader>sS", function()
     vim.cmd("mksession! " .. global_session)
     vim.notify("Global session written " .. global_session, vim.log.levels.INFO)
 end, { silent = true, desc = "Save Session (global)" })
+map("n", "<leader>ss", function()
+    vim.cmd("mksession! " .. local_session)
+    vim.notify("Local session written " .. local_session, vim.log.levels.INFO)
+end, { silent = true, desc = "Save Session (local)" })
 map("n", "<leader>sl", function()
     local session_file
     if vim.fn.filereadable(local_session) == 1 then
