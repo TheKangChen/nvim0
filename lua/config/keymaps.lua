@@ -153,7 +153,7 @@ map("n", "<leader>sl", function()
     end
     vim.cmd("source " .. session_file)
     vim.notify("Session loaded: " .. session_file, vim.log.levels.INFO)
-end, { silent = true, desc = "Save Session (local)" })
+end, { silent = true, desc = "Load Saved Session" })
 
 -- Quickfix
 map("n", "<C-q>", "<cmd>copen<cr>", { silent = true, desc = "Open Quickfix Window" })
