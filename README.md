@@ -1,6 +1,6 @@
 # Neovim Zero [WIP]
 
-A **zero-plugin** Neovim configuration derived from my main setup to push myself to *git good* on native Vim/Neovim features without relying on plugins. Despite its simplicity, this config is still completely usable for day-to-day editing ;)
+A **zero-plugin** Neovim configuration derived from my main setup to push myself to *git good* at native Vim/Neovim features without relying on plugins. Despite its simplicity, this config is still completely usable for day-to-day editing ;)
 
 > [!NOTE]
 > There are no plans to add plugins, only auto commands or custom commands where they make sense.
