@@ -49,7 +49,7 @@ If you want to fully switch to this setup, clone it into your Neovim configurati
 git clone https://github.com/TheKangChen/nvim0.git ~/.config/nvim
 ```
 
-> [!TIP]
+> [!IMPORTANT]
 > If you already have an existing Neovim config, back it up first:
 
 ```bash
@@ -98,11 +98,11 @@ See `lua/config/options.lua` for all configuration options, or run `:opt`.
 
 View all mapped keys with `:map`.
 
----
+### LSP Features
 
-## LSP Features
+For the full range of features provided by Neovim’s built-in LSP, such as go-to definition, hover documentation, references, and more, use the `:map` command to see all available key bindings.
 
-### Completion
+#### Completion
 
 Completions rely entirely on Neovim’s built-in LSP client. They should appear automatically as you type. If not, try:
 
@@ -112,7 +112,7 @@ Completions rely entirely on Neovim’s built-in LSP client. They should appear 
 > [!TIP]
 > See `:help i_CTRL-X` for more about completion sub-modes.
 
-### Code Actions
+#### Code Actions
 
 Use the `gra` keymap (in normal mode) to view and trigger available LSP code actions.
 
