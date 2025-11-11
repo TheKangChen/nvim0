@@ -2,7 +2,8 @@
 
 A **zero-plugin** Neovim configuration derived from my main setup to push myself to *git good* on native Vim/Neovim features without relying on plugins. Despite its simplicity, this config is still completely usable for day-to-day editing ;)
 
-**NOTE:** There are no plans to add plugins, only auto commands or custom commands where they make sense.
+> [!NOTE]
+> There are no plans to add plugins, only auto commands or custom commands where they make sense.
 
 ---
 
@@ -14,6 +15,8 @@ A **zero-plugin** Neovim configuration derived from my main setup to push myself
 
   - The LSPs I personally use are defined in the `lsp` directory.
   - To add another server:
+
+
     1. Create a file under `lsp/` named `<lsp_name>.lua`.
     2. Add the lsp configurations to the file.
     3. In `lua/config/lsp.lua`, add your server to the *Enable LSPs* section:
@@ -25,10 +28,10 @@ A **zero-plugin** Neovim configuration derived from my main setup to push myself
     })
     ```
 
-  > **Tips**:
-  > - Use `:checkhealth vim.lsp` to view LSPs attached to the current buffer or any LSP related issues.
-  > - Available LSPs: https://microsoft.github.io/language-server-protocol/implementors/servers/
-  > - Example configurations: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+> [!TIP]
+> - Use `:checkhealth vim.lsp` to view LSPs attached to the current buffer or any LSP related issues.
+> - Available LSPs: https://microsoft.github.io/language-server-protocol/implementors/servers/
+> - Example configurations: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 - [**`Glow`**](https://github.com/charmbracelet/glow): for Markdown previewing.
 
@@ -46,7 +49,8 @@ If you want to fully switch to this setup, clone it into your Neovim configurati
 git clone https://github.com/TheKangChen/nvim0.git ~/.config/nvim
 ```
 
-> **Tip:** If you already have an existing Neovim config, back it up first:
+> [!TIP]
+> If you already have an existing Neovim config, back it up first:
 
 ```bash
 mv ~/.config/nvim ~/.config/nvim_backup
@@ -72,7 +76,8 @@ Then start Neovim with:
 NVIM_APPNAME=nvim-zero nvim
 ```
 
-> **Tip:** You can create an alias in your `bashrc` or `zshrc` file to avoid typing all of this every time.
+> [!TIP]
+> You can create an alias in your `bashrc` or `zshrc` file to avoid typing all of this every time.
 
 Neovim will treat `~/.config/nvim-zero` as its config directory, keeping your main `~/.config/nvim` untouched.
 
@@ -104,6 +109,7 @@ Completions rely entirely on Neovim’s built-in LSP client. They should appear 
   - `<Ctrl-X><Ctrl-O>` for omni-completion
   - `<Ctrl-N>` to cycle through completions if available
 
+> [!TIP]
 > See `:help i_CTRL-X` for more about completion sub-modes.
 
 ### Code Actions
