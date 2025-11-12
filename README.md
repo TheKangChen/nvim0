@@ -1,6 +1,6 @@
 # Neovim Zero [WIP]
 
-A **zero-plugin** Neovim configuration derived from my main setup to push myself to *git good* at native Vim/Neovim features without relying on plugins. Despite its simplicity, this config is still completely usable for day-to-day editing ;)
+A **zero-plugin** Neovim configuration derived from my main setup to *git good* at native Vim/Neovim features without relying on plugins. Despite its simplicity, this config is still completely usable for day-to-day editing ;)
 
 > [!NOTE]
 > There are no plans to add plugins, only auto commands or custom commands where they make sense.
@@ -81,6 +81,14 @@ NVIM_APPNAME=nvim-zero nvim
 
 Neovim will treat `~/.config/nvim-zero` as its config directory, keeping your main `~/.config/nvim` untouched.
 
+### Update
+
+To update configuration to latest version run this command inside the config directory (`~/.config/nvim` or `~/.config/nvim-zero`):
+
+```bash
+git pull
+```
+
 ---
 
 ## Usage & Help
@@ -93,10 +101,6 @@ For general Vim help, use:
 ### Options
 
 See `lua/config/options.lua` for all configuration options, or run `:opt`.
-
-### Keymaps
-
-View all mapped keys with `:map`.
 
 ### LSP Features
 
@@ -120,6 +124,179 @@ Use the `gra` keymap (in normal mode) to view and trigger available LSP code act
 
 Use `z=` (in normal mode) to view spelling suggestions for the word under the cursor.
 
+### Key Bindings
+
+Here's a list of **custom key mappings**. To view all active mappings, use `:map`.
+
+<table style="width:100%">
+  <tr>
+    <th>Key Map</th>
+    <th>Description</th>
+    <th>Key Map</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td><pre>&ltSpace&gtqq</pre></td>
+    <td>Write & quit all buffer</td>
+    <td><pre>&ltSpace&gto</pre></td>
+    <td>Open file in explorer</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gt-</pre></td>
+    <td>Window horizontal split</td>
+    <td><pre>&ltSpace&gt_</pre></td>
+    <td>Open alt file in split</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gt\</pre></td>
+    <td>Window vertical split</td>
+    <td><pre>&ltSpace&gt|</pre></td>
+    <td>Open alt file in vertical split</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtbn</pre></td>
+    <td>Next buffer</td>
+    <td><pre>&ltSpace&gtbp</pre></td>
+    <td>Previous buffer</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtbb</pre></td>
+    <td>Switch to alternate file</td>
+    <td><pre>&ltSpace&gtmm</pre></td>
+    <td>Open Explorer (Netrw)</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtff</pre></td>
+    <td>Find file</td>
+    <td><pre>&ltSpace&gtrc</pre></td>
+    <td>Edit config file</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gttr</pre></td>
+    <td>Switch to regular theme</td>
+    <td><pre>&ltSpace&gt</pre></td>
+    <td>Switch to alternative theme</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtz</pre></td>
+    <td>Toggle center cursor</td>
+    <td><pre>&ltSpace&gtp</pre></td>
+    <td>Preview markdown in vertical split</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gte</pre></td>
+    <td>Preview diagnostic in float</td>
+    <td><pre>&ltSpace&gtdl</pre></td>
+    <td>Show all diagnostics in location list</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtdx</pre></td>
+    <td>Toggle diagnostics virtual text</td>
+    <td><pre>&ltSpace&gtsS</pre></td>
+    <td>Save session (global)</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtss</pre></td>
+    <td>Save session (local)</td>
+    <td><pre>&ltSpace&gtsl</pre></td>
+    <td>Load saved session</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtT</pre></td>
+    <td>Toggle floating terminal</td>
+    <td><pre>&ltESC&gt</pre></td>
+    <td>Close floating terminal</td>
+  </tr>
+  <tr>
+    <td><pre>K</pre></td>
+    <td>LSP hover documentation</td>
+    <td><pre>gh</pre></td>
+    <td>LSP Signature documentation</td>
+  </tr>
+  <tr>
+    <td><pre>gD</pre></td>
+    <td>Go to declaration</td>
+    <td><pre>gd</pre></td>
+    <td>Go to definition</td>
+  </tr>
+  <tr>
+    <td><pre>gra</pre></td>
+    <td>LSP code action</td>
+    <td><pre>grn</pre></td>
+    <td>Rename all references</td>
+  </tr>
+  <tr>
+    <td><pre>grr</pre></td>
+    <td>LSP references</td>
+    <td><pre>gri</pre></td>
+    <td>LSP implementation</td>
+  </tr>
+  <tr>
+    <td><pre>grt</pre></td>
+    <td>LSP type definition</td>
+    <td><pre>&ltSpace&gtcf</pre></td>
+    <td>Format buffer</td>
+  </tr>
+  <tr>
+    <td><pre>&ltCtrl-x&gt&ltCtrl-o&gt</pre></td>
+    <td>Omni completion</td>
+    <td><pre>&ltSpace&gtv</pre></td>
+    <td>Go to definition in vertical split</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtwa</pre></td>
+    <td>Add workspace folder</td>
+    <td><pre>&ltSpace&gtwr</pre></td>
+    <td>Remove workspace folder</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gtwl</pre></td>
+    <td>List workspace folders</td>
+    <td><pre>&ltCtrl-q&gt</pre></td>
+    <td>Toggle quickfix window</td>
+  </tr>
+  <tr>
+    <td><pre>&ltSpace&gta</pre></td>
+    <td>Add current file to quickfix</td>
+    <td><pre>&ltSpace&gt1...9</pre></td>
+    <td>Go to file #n on quickfix</td>
+  </tr>
+  <tr>
+    <td><pre>&ltCtrl-k&gt</pre></td>
+    <td>Focus window top</td>
+    <td><pre>&ltCtrl-j&gt</pre></td>
+    <td>Focus window below</td>
+  </tr>
+  <tr>
+    <td><pre>&ltCtrl-h&gt</pre></td>
+    <td>Focus window left</td>
+    <td><pre>&ltCtrl-l&gt</pre></td>
+    <td>Focus window right</td>
+  </tr>
+  <tr>
+    <td><pre>&ltAlt-d&gt</pre></td>
+    <td>Delete without yanking</td>
+    <td><pre>&ltAlt-c&gt</pre></td>
+    <td>Change without yanking</td>
+  </tr>
+  <tr>
+    <td><pre>&ltAlt-j&gt</pre></td>
+    <td>Move line down</td>
+    <td><pre>&ltAlt-k&gt</pre></td>
+    <td>Move line up</td>
+  </tr>
+  <tr>
+    <td><pre>&ltAlt-h&gt</pre></td>
+    <td>Unindent line</td>
+    <td><pre>&ltAlt-l&gt</pre></td>
+    <td>Indent line</td>
+  </tr>
+</table>
+
+> [!NOTE]
+> To change key bindings, go to `lua/config/keymaps.lua` and to change LSP related key bindings, go to `lua/config/lsp.lua`.
+
 ---
 
 ## Plans
@@ -128,7 +305,9 @@ The base configuration is intentionally minimal, but I may add or refine keymaps
 
 ### Road Map
 
-- Remove the floating terminal (keymap `<leader>T`). I mainly use `tmux`, so it’s not particularly useful. Keeping it for now just in case.
+- [ ] Remove the floating terminal (keymap `<leader>T`). I mainly use `tmux`, so it’s not particularly useful. Keeping it for now just in case.
+- [ ] Add custom statusline
+- [ ] Auto commands highlighting tasks (e.g. `TODO`, `BUG`, `FIX`, `INFO`, etc.)
 
 ---
 
