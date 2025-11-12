@@ -156,7 +156,20 @@ map("n", "<leader>sl", function()
 end, { silent = true, desc = "Load Saved Session" })
 
 -- Quickfix
-map("n", "<C-q>", "<cmd>copen<cr>", { silent = true, desc = "Open Quickfix Window" })
+map("n", "<C-q>", function()
+    local is_quickfix_open = false
+    for _, win in ipairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            is_quickfix_open = true
+            break
+        end
+    end
+    if is_quickfix_open then
+        vim.cmd("cclose")
+    else
+        vim.cmd("copen")
+    end
+end, { silent = true, desc = "Toggle Quickfix Window" })
 map("n", "<leader>a",
     function() vim.fn.setqflist({ { filename = vim.fn.expand("%"), lnum = 1, col = 1, text = vim.fn.expand("%"), } }, "a") end,
     { desc = "Add Current File to Quickfix" })
@@ -166,7 +179,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     group = vim.api.nvim_create_augroup("qf", { clear = true }),
     callback = function()
         if vim.bo.buftype == "quickfix" then
-            map("n", "<leader>q", ":ccl<cr>", { buffer = true, silent = true, desc = "Close Quickfix" })
             map("n", "dd", function()
                 local idx = vim.fn.line('.')
                 local qflist = vim.fn.getqflist()
@@ -178,6 +190,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 -- Make quickfix act like harpoon
 for i = 1, 9 do
-    map('n', '<leader>' .. i, ':cc ' .. i .. '<cr>',
+    map('n', '<leader>' .. i, '<cmd>cc ' .. i .. '<cr>',
         { noremap = true, silent = true, desc = string.format("Go to #%d on Quickfix", i) })
 end

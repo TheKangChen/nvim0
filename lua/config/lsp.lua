@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>wa", vim.lsp.buf.add_workspace_folder, "Add Workspace Folder")
         map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder")
         map("<leader>wl", vim.lsp.buf.list_workspace_folders, "List Workspace Folder")
-        map("<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split")
+        map("<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Go to Definition in Vertical Split")
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         -- Highlight
